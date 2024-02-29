@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container } from "./Container";
-//import { InputBox } from "./InputBox"
+import { InputBox } from "./InputBox";
 import { ClearButton } from "./ClearButton";
 import { LoadExampleButton } from "./LoadExampleButton";
 import { HeaderOutputSection } from "./HeaderOutputSection";
@@ -11,19 +11,19 @@ export const Form = () => {
   const [phoneNum, setPhoneNum] = useState("");
   const [adress, setAdress] = useState("");
 
-  const handleName = (e) => {
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
   };
 
-  const handleEmail = (e) => {
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handlePhoneNum = (e) => {
+  const handlePhoneNum = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhoneNum(e.target.value);
   };
 
-  const handleAdress = (e) => {
+  const handleAdress = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAdress(e.target.value);
   };
 
@@ -46,43 +46,30 @@ export const Form = () => {
         <div>
           <h2>Personal Details</h2>
         </div>
-
-        <div className="flex-col">
-          <h2>Full Name</h2>
-          <input
-            type="text"
-            value={fullName}
-            onChange={handleName}
-            placeholder="First and last name"
-          />
-        </div>
-        <div className="flex-col">
-          <h2>Email</h2>
-          <input
-            type="text"
-            value={email}
-            onChange={handleEmail}
-            placeholder="Enter email"
-          />
-        </div>
-        <div className="flex-col">
-          <h2>Phone Number</h2>
-          <input
-            type="text"
+        <InputBox
+          heading="Full Name"
+          value={fullName}
+          onChange={handleName}
+          placeholderText="First and last name"
+        />
+        <InputBox
+          heading="Email"
+          value={email}
+          onChange={handleEmail}
+          placeholderText="Enter email"
+        />
+          <InputBox
+            heading="Phone number"
             value={phoneNum}
             onChange={handlePhoneNum}
-            placeholder="Enter phone number"
+            placeholderText="Enter phone number"
           />
-        </div>
-        <div className="flex-col">
-          <h2>Adress</h2>
-          <input
-            type="text"
-            value={adress}
-            onChange={handleAdress}
-            placeholder="City, Country"
-          />
-        </div>
+        <InputBox
+          heading="Adress"
+          value={adress}
+          onChange={handleAdress}
+          placeholderText="City, Country"
+        />
       </Container>
       <Container>
         <HeaderOutputSection
