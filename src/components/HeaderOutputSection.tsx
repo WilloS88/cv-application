@@ -1,4 +1,3 @@
-import React from 'react'; // Ensure React is in scope when using JSX
 import emailIcon from "../assets/icons/output/emailIcon.svg";
 import phoneIcon from "../assets/icons/output/phoneIcon.svg";
 import locationIcon from "../assets/icons/output/locationIcon.svg";
