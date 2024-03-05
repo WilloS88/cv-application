@@ -1,4 +1,4 @@
-import deleteIcon from "../assets/icons/input/deleteIcon.svg";
+import deleteIcon from "../../assets/icons/input/deleteIcon.svg";
 
 type ClearButtonProps = {
   clearData: () => void;

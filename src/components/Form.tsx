@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Container } from "./Container";
 import { InputBox } from "./InputBox";
-import { ClearButton } from "./ClearButton";
-import { LoadExampleButton } from "./LoadExampleButton";
+import { ClearButton } from "./Buttons/ClearButton";
+import { LoadExampleButton } from "./Buttons/LoadExampleButton";
 import { HeaderOutputSection } from "./HeaderOutputSection";
+import data from "../data/exampleData";
 
 export const Form = () => {
   const [fullName, setFullName] = useState("");
@@ -34,6 +35,13 @@ export const Form = () => {
     setAdress("");
   };
 
+  const loadData = () => {
+    setFullName(data[0].fullName);
+    setEmail(data[0].email);
+    setPhoneNum(data[0].phoneNumber);
+    setAdress(data[0].address);
+  };
+
   useEffect(() => {}, []);
 
   return (
@@ -41,7 +49,9 @@ export const Form = () => {
       <Container>
         <div className="flex gap-5 py-2 px-4">
           <ClearButton clearData={clearData} />
-          <LoadExampleButton />
+          <div>
+            <LoadExampleButton onClick={loadData} />
+          </div>
         </div>
         <div>
           <h2>Personal Details</h2>
@@ -58,12 +68,12 @@ export const Form = () => {
           onChange={handleEmail}
           placeholderText="Enter email"
         />
-          <InputBox
-            heading="Phone number"
-            value={phoneNum}
-            onChange={handlePhoneNum}
-            placeholderText="Enter phone number"
-          />
+        <InputBox
+          heading="Phone number"
+          value={phoneNum}
+          onChange={handlePhoneNum}
+          placeholderText="Enter phone number"
+        />
         <InputBox
           heading="Adress"
           value={adress}
