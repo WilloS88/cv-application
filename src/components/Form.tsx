@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
+import { ContentButton } from "./Buttons/ContentButton";
+import { CustomizeButton } from "./Buttons/CustomizeButton";
 import { Container } from "./Container";
 import { InputBox } from "./InputBox";
+import { EducationSection } from "./Sections.tsx/EducationSection";
+import { ExperienceSection } from "./Sections.tsx/ExperienceSection";
 import { ClearButton } from "./Buttons/ClearButton";
 import { LoadExampleButton } from "./Buttons/LoadExampleButton";
 import { HeaderOutputSection } from "./HeaderOutputSection";
@@ -45,50 +49,56 @@ export const Form = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex justify-center items-center bg-slate-500 p-40 gap-5 rounded-md">
-      <Container>
+    <div className="flex justify-center bg-slate-400 gap-5 p-10">
+      <div className="flex-col ">
+        <ContentButton />
+        <CustomizeButton />
+      </div>
+      <div className="flex-col justify-center items-center">
         <div className="flex gap-5 py-2 px-4">
           <ClearButton clearData={clearData} />
           <div>
             <LoadExampleButton onClick={loadData} />
           </div>
         </div>
-        <div>
-          <h2>Personal Details</h2>
-        </div>
-        <InputBox
-          heading="Full Name"
-          value={fullName}
-          onChange={handleName}
-          placeholderText="First and last name"
-        />
-        <InputBox
-          heading="Email"
-          value={email}
-          onChange={handleEmail}
-          placeholderText="Enter email"
-        />
-        <InputBox
-          heading="Phone number"
-          value={phoneNum}
-          onChange={handlePhoneNum}
-          placeholderText="Enter phone number"
-        />
-        <InputBox
-          heading="Adress"
-          value={adress}
-          onChange={handleAdress}
-          placeholderText="City, Country"
-        />
-      </Container>
-      <Container>
-        <HeaderOutputSection
-          fullName={fullName}
-          email={email}
-          phoneNum={phoneNum}
-          adress={adress}
-        />
-      </Container>
+        <Container>
+          <div>
+            <h1 className="text-xl font-bold mb-2">Personal Details</h1>
+          </div>
+          <InputBox
+            heading="Full Name"
+            value={fullName}
+            onChange={handleName}
+            placeholderText="First and last name"
+          />
+          <InputBox
+            heading="Email"
+            value={email}
+            onChange={handleEmail}
+            placeholderText="Enter email"
+          />
+          <InputBox
+            heading="Phone number"
+            value={phoneNum}
+            onChange={handlePhoneNum}
+            placeholderText="Enter phone number"
+          />
+          <InputBox
+            heading="Adress"
+            value={adress}
+            onChange={handleAdress}
+            placeholderText="City, Country"
+          />
+        </Container>
+        <EducationSection />
+        <ExperienceSection />
+      </div>
+      <HeaderOutputSection
+        fullName={fullName}
+        email={email}
+        phoneNum={phoneNum}
+        address={adress}
+      />
     </div>
   );
 };
