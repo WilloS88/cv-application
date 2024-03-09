@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { ContentButton } from "./Buttons/ContentButton";
 import { CustomizeButton } from "./Buttons/CustomizeButton";
-import { Container } from "./Container";
 import { InputBox } from "./InputBox";
 import { EducationSection } from "./Sections/EducationSection";
 import { ExperienceSection } from "./Sections/ExperienceSection";
@@ -49,19 +48,17 @@ export const Form = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex justify-center bg-slate-400 gap-5 p-10">
-      <div className="flex-col ">
+    <div className="flex justify-center bg-slate-400 gap-10 p-10 h-dvh">
+      <div className="flex-col bg-white rounded-lg h-1/5 p-2">
         <ContentButton />
         <CustomizeButton />
       </div>
-      <div className="flex-col justify-center items-center">
-        <div className="flex gap-5 py-2 px-4">
+      <div className="flex-col justify-center items-center w-1/3">
+        <div className="flex justify-center gap-5 py-2 mb-2 rounded-lg bg-white">
           <ClearButton clearData={clearData} />
-          <div>
-            <LoadExampleButton onClick={loadData} />
-          </div>
+          <LoadExampleButton onClick={loadData} />
         </div>
-        <Container>
+        <div className="flex-col bg-white p-4 rounded-lg">
           <div>
             <h1 className="text-xl font-bold mb-2">Personal Details</h1>
           </div>
@@ -89,16 +86,18 @@ export const Form = () => {
             onChange={handleAdress}
             placeholderText="City, Country"
           />
-        </Container>
+        </div>
         <EducationSection />
         <ExperienceSection />
       </div>
-      <HeaderOutputSection
-        fullName={fullName}
-        email={email}
-        phoneNum={phoneNum}
-        address={adress}
-      />
+      <div className="bg-slate-500 w-1/2">
+        <HeaderOutputSection
+          fullName={fullName}
+          email={email}
+          phoneNum={phoneNum}
+          address={adress}
+        />
+      </div>
     </div>
   );
 };

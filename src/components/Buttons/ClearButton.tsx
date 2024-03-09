@@ -9,6 +9,7 @@ export const ClearButton = ({ clearData }: ClearButtonProps) => {
   return (
     <div>
       <ButtonStyled
+        flex="flex"
         icon={deleteIcon}
         content="Clear Resume"
         textColor="text-red-500"

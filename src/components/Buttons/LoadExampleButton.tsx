@@ -8,6 +8,7 @@ export const LoadExampleButton = ({ onClick }: LoadExampleButtonProps) => {
   return (
     <div>
       <ButtonStyled 
+      flex="flex"
       content="Load Example"
       onClick={onClick}
       />
