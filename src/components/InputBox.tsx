@@ -1,9 +1,4 @@
-type InputBoxProps = {
-  heading: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholderText: string;
-};
+import type { InputBoxProps } from "../types/InputBoxProps";
 
 export const InputBox = ({
   heading,

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { ContentButton } from "./Buttons/ContentButton";
-import { CustomizeButton } from "./Buttons/CustomizeButton";
+import { ContentButton } from "./Styled/Buttons/ContentButton";
+import { CustomizeButton } from "./Styled/Buttons/CustomizeButton";
 import { InputBox } from "./InputBox";
 import { EducationSection } from "./Sections/EducationSection";
 import { ExperienceSection } from "./Sections/ExperienceSection";
-import { ClearButton } from "./Buttons/ClearButton";
-import { LoadExampleButton } from "./Buttons/LoadExampleButton";
-import { HeaderOutputSection } from "./HeaderOutputSection";
+import { ClearButton } from "./Styled/Buttons/ClearButton";
+import { LoadExampleButton } from "./Styled/Buttons/LoadExampleButton";
+import { HeaderOutputSection } from "./Sections/HeaderOutputSection";
 import data from "../data/exampleData";
 
 export const Form = () => {
