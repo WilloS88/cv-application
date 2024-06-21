@@ -36,11 +36,13 @@ export const EducationSection = () => {
   const [educations, setEducations] = useState<EducationEntry[]>([]);
   const [newEducation, setNewEducation] = useState<EducationEntry>({
     school: "",
+
     degree: "",
     startDate: "",
     endDate: "",
     location: "",
   });
+
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
 
@@ -60,6 +62,7 @@ export const EducationSection = () => {
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
+
 
   return (
     <div className="my-2">
@@ -92,10 +95,12 @@ export const EducationSection = () => {
                       className="mr-2 w-6 h-6"
                     />
                   </span>
+
                 )}
               </span>
             </Disclosure.Button>
             <Disclosure.Panel className="my-2 p-4 bg-white rounded-lg shadow">
+
               {isFormVisible && (
                 <form className="space-y-2">
                   <InputBox
@@ -152,9 +157,71 @@ export const EducationSection = () => {
                 <button
                   onClick={toggleFormVisibility}
                   className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full shadow hover:bg-blue-600"
+
                 >
                   + Education
                 </button>
+
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                  <InputBox
+                    type="text"
+                    heading="School Name"
+                    value={educationDetails.schoolName}
+                    onChange={(e) =>
+                      handleEducationDetailChange(e, "schoolName")
+                    }
+                    placeholderText="Enter school/university name"
+                  />
+                  <InputBox
+                    type="text"
+                    heading="Degree"
+                    value={educationDetails.degree}
+                    onChange={(e) => handleEducationDetailChange(e, "degree")}
+                    placeholderText="Enter degree"
+                  />
+                  <div className="flex justify-evenly">
+                    <InputBox
+                      type="date"
+                      heading="Start Date"
+                      value={educationDetails.startDate}
+                      onChange={(e) =>
+                        handleEducationDetailChange(e, "startDate")
+                      }
+                      placeholderText=""
+                    />
+                    <InputBox
+                      type="text"
+                      heading="End Date"
+                      value={educationDetails.endDate}
+                      onChange={(e) =>
+                        handleEducationDetailChange(e, "endDate")
+                      }
+                      placeholderText=""
+                    />
+                  </div>
+
+                  <InputBox
+                    type="text"
+                    heading="Location"
+                    value={educationDetails.location}
+                    onChange={(e) => handleEducationDetailChange(e, "location")}
+                    placeholderText="Enter location"
+                  />
+                  <div className="flex justify-around">
+                    <button
+                      className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
+                      onClick={handleSave}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
+                      onClick={closeModal}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </Modal>
               </div>
               <div>
                 {educations.map((education, index) => (
