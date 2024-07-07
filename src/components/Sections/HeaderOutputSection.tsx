@@ -1,6 +1,6 @@
 import emailIcon from "../../assets/icons/output/emailIcon.svg";
 import phoneIcon from "../../assets/icons/output/phoneIcon.svg";
-import locationIcon from "../assets/icons/output/locationIcon.svg";
+import locationIcon from "../../assets/icons/output/locationIcon.svg";
 import type { HeaderOutputSectionProps } from "../../types/HeaderOutputSectionProps";
 
 export const HeaderOutputSection = ({

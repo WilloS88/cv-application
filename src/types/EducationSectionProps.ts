@@ -1,4 +1,5 @@
-export type EducationEntry = {
+export type EducationProps = {
+  id: string;
   school: string;
   degree: string;
   startDate: string;

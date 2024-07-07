@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { ContentButton } from "./Styled/Buttons/ContentButton";
-import { CustomizeButton } from "./Styled/Buttons/CustomizeButton";
+import { ContentButton } from "./ui/Buttons/ContentButton";
+import { CustomizeButton } from "./ui/Buttons/CustomizeButton";
 import { InputBox } from "./InputBox";
 import { EducationSection } from "./Sections/EducationSection";
 import { ExperienceSection } from "./Sections/ExperienceSection";
-import { ClearButton } from "./Styled/Buttons/ClearButton";
-import { LoadExampleButton } from "./Styled/Buttons/LoadExampleButton";
+import { ClearButton } from "./ui/Buttons/ClearButton";
+import { LoadExampleButton } from "./ui/Buttons/LoadExampleButton";
 import { HeaderOutputSection } from "./Sections/HeaderOutputSection";
 import data from "../data/exampleData";
 
