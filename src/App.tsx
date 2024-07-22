@@ -4,7 +4,7 @@ import "./index.css";
 
 function App() {
   return (
-    <main className="flex-col justify-center items-center h-screen">
+    <main className="flex-col justify-center items-center h-screen bg-slate-400">
       <Header />
       <div>
         <Form />

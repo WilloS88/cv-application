@@ -1,3 +1,4 @@
+//EducationSection.tsx
 import { useState, ChangeEvent } from "react";
 import { Disclosure } from "@headlessui/react";
 import arrowUp from "../../assets/icons/modal/arrowUp.svg";
@@ -7,14 +8,19 @@ import { InputBox } from "../InputBox";
 import type { EducationProps } from "../../types/EducationSectionProps";
 import { v4 as uuidv4 } from "uuid";
 
-export const EducationSection = () => {
+type EducationSectionProps = {
+  educations: EducationProps[];
+  setEducations: (educations: EducationProps[]) => void;
+};
+
+export const EducationSection = ({ educations, setEducations }: EducationSectionProps) => {
   const [school, setSchool] = useState("");
   const [degree, setDegree] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [location, setLocation] = useState("");
-  const [educations, setEducations] = useState<EducationProps[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
+  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   const handleSchool = (e: ChangeEvent<HTMLInputElement>) => {
     setSchool(e.target.value);
@@ -36,15 +42,12 @@ export const EducationSection = () => {
     setLocation(e.target.value);
   };
 
-  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
-
   const handleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
 
   const handleSave = () => {
     if (editId !== null) {
-      // Highlight: Fixed the `map` function to correctly return the new education object.
       const updatedEducations = educations.map((education) =>
         education.id === editId
           ? { id: editId, school, degree, startDate, endDate, location }
@@ -58,7 +61,6 @@ export const EducationSection = () => {
         { id: uuidv4(), school, degree, startDate, endDate, location },
       ]);
     }
-    // Highlight: Call `clearForm` to reset the form fields and hide the form.
     clearForm();
     setIsFormVisible(false);
   };
@@ -80,7 +82,6 @@ export const EducationSection = () => {
     }
   };
 
-  // Highlight: Added `clearForm` function to reset the form fields.
   const clearForm = () => {
     setSchool("");
     setDegree("");
@@ -125,7 +126,7 @@ export const EducationSection = () => {
             </Disclosure.Button>
             <Disclosure.Panel className="my-2 p-4 bg-white rounded-lg shadow">
               {isFormVisible ? (
-                <form className="space-y-2">
+                <form className="space-y-2 mb-4">
                   <InputBox
                     heading="School"
                     value={school}
@@ -144,12 +145,18 @@ export const EducationSection = () => {
                       value={startDate}
                       onChange={handleStartDate}
                       placeholderText="Enter Start Date"
+                      type="number"
+                      min="1900"
+                      max="2100"
                     />
                     <InputBox
                       heading="End Date"
                       value={endDate}
                       onChange={handleEndDate}
                       placeholderText="Enter End Date"
+                      type="number"
+                      min="1900"
+                      max="2100"
                     />
                   </div>
                   <InputBox
@@ -158,7 +165,7 @@ export const EducationSection = () => {
                     onChange={handleLocation}
                     placeholderText="Enter Location"
                   />
-                  <div className="flex justify-end gap-4">
+                  <div className="flex justify-end gap-4 ">
                     <button
                       type="button"
                       onClick={handleSave}
@@ -168,7 +175,6 @@ export const EducationSection = () => {
                     </button>
                     <button
                       type="button"
-                      // Highlight: Updated the Cancel button to clear the form and hide it when clicked.
                       onClick={() => {
                         clearForm();
                         setIsFormVisible(false);
@@ -180,7 +186,7 @@ export const EducationSection = () => {
                   </div>
                 </form>
               ) : (
-                <div className="flex justify-center">
+                <div className="flex justify-center mb-4">
                   <button
                     onClick={handleFormVisibility}
                     className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-full shadow hover:bg-blue-600"
@@ -195,19 +201,17 @@ export const EducationSection = () => {
                     key={education.id}
                     className="mb-2 flex justify-between items-center"
                   >
-                    <span>
-                      {education.school} {education.location}
-                    </span>
+                    <span>{education.school}</span>
                     <span>
                       <button
                         onClick={() => handleEdit(education.id)}
-                        className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
+                        className="bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(education.id)}
-                        className="bg-red-500 text-white px-2 py-1 rounded"
+                        className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                       >
                         Delete
                       </button>
@@ -215,7 +219,6 @@ export const EducationSection = () => {
                   </li>
                 ))}
               </ul>
-              <div></div>
             </Disclosure.Panel>
           </div>
         )}

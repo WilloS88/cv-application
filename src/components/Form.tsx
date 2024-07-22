@@ -7,13 +7,16 @@ import { ExperienceSection } from "./Sections/ExperienceSection";
 import { ClearButton } from "./ui/Buttons/ClearButton";
 import { LoadExampleButton } from "./ui/Buttons/LoadExampleButton";
 import { HeaderOutputSection } from "./Sections/HeaderOutputSection";
+import { EducationOutputSection } from "./Sections/EducationOutputSection";
 import data from "../data/exampleData";
+import type { EducationProps } from "../types/EducationSectionProps";
 
 export const Form = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [adress, setAdress] = useState("");
+  const [educations, setEducations] = useState<EducationProps[]>([]);
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
@@ -48,7 +51,7 @@ export const Form = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex justify-center bg-slate-400 gap-10 p-10 h-dvh">
+    <div className="flex justify-center bg-slate-400 gap-10 p-10 ">
       <div className="flex-col bg-white rounded-lg h-1/5 p-2">
         <ContentButton />
         <CustomizeButton />
@@ -87,7 +90,7 @@ export const Form = () => {
             placeholderText="City, Country"
           />
         </div>
-        <EducationSection />
+        <EducationSection educations={educations} setEducations={setEducations} />
         <ExperienceSection />
       </div>
       <div className="bg-slate-500 w-1/2">
@@ -97,6 +100,7 @@ export const Form = () => {
           phoneNum={phoneNum}
           address={adress}
         />
+        <EducationOutputSection educations={educations} />
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export const HeaderOutputSection = ({
   };
 
   return (
-    <div className="bg-cyan-600 flex flex-col items-center p-6 w-full text-white h-1/6">
+    <div className="bg-cyan-600 flex flex-col items-center p-6 w-full text-white">
       <h1 className="text-2xl font-bold text-center mb-4">{fullName}</h1>
       <div className="flex flex-wrap justify-center gap-4">
         {renderContactInfo(email, emailIcon, "Email")}
