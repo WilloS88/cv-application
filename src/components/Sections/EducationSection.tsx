@@ -1,19 +1,23 @@
-//EducationSection.tsx
 import { useState, ChangeEvent } from "react";
 import { Disclosure } from "@headlessui/react";
+import { InputBox } from "../InputBox";
+import { v4 as uuidv4 } from "uuid";
+import type { EducationProps } from "../../types/EducationSectionProps";
+// import data from "../../data/exampleData";
+
 import arrowUp from "../../assets/icons/modal/arrowUp.svg";
 import arrowDown from "../../assets/icons/modal/arrowDown.svg";
 import educationIcon from "../../assets/icons/input/educationIcon.svg";
-import { InputBox } from "../InputBox";
-import type { EducationProps } from "../../types/EducationSectionProps";
-import { v4 as uuidv4 } from "uuid";
 
 type EducationSectionProps = {
   educations: EducationProps[];
   setEducations: (educations: EducationProps[]) => void;
 };
 
-export const EducationSection = ({ educations, setEducations }: EducationSectionProps) => {
+export const EducationSection = ({
+  educations,
+  setEducations,
+}: EducationSectionProps) => {
   const [school, setSchool] = useState("");
   const [degree, setDegree] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -21,7 +25,8 @@ export const EducationSection = ({ educations, setEducations }: EducationSection
   const [location, setLocation] = useState("");
   const [editId, setEditId] = useState<string | null>(null);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
-
+  const [error, setError] = useState<string>("");
+  
   const handleSchool = (e: ChangeEvent<HTMLInputElement>) => {
     setSchool(e.target.value);
   };
@@ -46,7 +51,20 @@ export const EducationSection = ({ educations, setEducations }: EducationSection
     setIsFormVisible(!isFormVisible);
   };
 
+  const validateForm = () => {
+    if (!school || !degree || !startDate || !endDate || !location) {
+      setError("All fields are required.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
   const handleSave = () => {
+    if (!validateForm()) {
+      return;
+    }
+
     if (editId !== null) {
       const updatedEducations = educations.map((education) =>
         education.id === editId
@@ -88,6 +106,7 @@ export const EducationSection = ({ educations, setEducations }: EducationSection
     setStartDate("");
     setEndDate("");
     setLocation("");
+    setError("");
   };
 
   return (
@@ -165,7 +184,14 @@ export const EducationSection = ({ educations, setEducations }: EducationSection
                     onChange={handleLocation}
                     placeholderText="Enter Location"
                   />
-                  <div className="flex justify-end gap-4 ">
+                  {error ? (
+                    <div className="text-red-500">
+                      {error}
+                    </div>
+                  ) : (
+                    null
+                  )}
+                  <div className="flex justify-end gap-4">
                     <button
                       type="button"
                       onClick={handleSave}

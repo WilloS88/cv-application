@@ -8,8 +8,10 @@ import { ClearButton } from "./ui/Buttons/ClearButton";
 import { LoadExampleButton } from "./ui/Buttons/LoadExampleButton";
 import { HeaderOutputSection } from "./Sections/HeaderOutputSection";
 import { EducationOutputSection } from "./Sections/EducationOutputSection";
+import { ExperienceOutputSection } from "./Sections/ExperienceOutputSection";
 import data from "../data/exampleData";
 import type { EducationProps } from "../types/EducationSectionProps";
+import type { ExperienceProps } from "../types/ExperienceSectionProps";
 
 export const Form = () => {
   const [fullName, setFullName] = useState("");
@@ -17,7 +19,8 @@ export const Form = () => {
   const [phoneNum, setPhoneNum] = useState("");
   const [adress, setAdress] = useState("");
   const [educations, setEducations] = useState<EducationProps[]>([]);
-
+  const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
+  
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
   };
@@ -90,10 +93,16 @@ export const Form = () => {
             placeholderText="City, Country"
           />
         </div>
-        <EducationSection educations={educations} setEducations={setEducations} />
-        <ExperienceSection />
+        <EducationSection
+          educations={educations}
+          setEducations={setEducations}
+        />
+        <ExperienceSection 
+          experiences={experiences}
+          setExperiences={setExperiences}
+        />
       </div>
-      <div className="bg-slate-500 w-1/2">
+      <div className="bg-slate-500 w-1/2 h-screen flex-col">
         <HeaderOutputSection
           fullName={fullName}
           email={email}
@@ -101,6 +110,7 @@ export const Form = () => {
           address={adress}
         />
         <EducationOutputSection educations={educations} />
+        <ExperienceOutputSection experiences={experiences} />
       </div>
     </div>
   );
