@@ -4,7 +4,7 @@ import type { ClearButtonProps } from "../../../types/styled/ClearButtonProps";
 
 export const ClearButton = ({ clearData }: ClearButtonProps) => {
   return (
-    <div>
+    <div className="my-2">
       <ButtonStyled
         icon={deleteIcon}
         content="Clear Resume"

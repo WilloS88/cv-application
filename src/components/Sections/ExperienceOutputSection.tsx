@@ -1,4 +1,4 @@
-import type { ExperienceProps } from "../../types/ExperienceSectionProps";
+import type { ExperienceProps } from "../../types/ExperienceSection";
 
 interface ExperienceOutputSectionProps {
   experiences: ExperienceProps[];

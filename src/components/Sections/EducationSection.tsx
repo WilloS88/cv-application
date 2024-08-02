@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from "react";
 import { Disclosure } from "@headlessui/react";
-import { InputBox } from "../InputBox";
+import { InputBox } from "../ui/Inputs/InputBox";
 import { v4 as uuidv4 } from "uuid";
-import type { EducationProps } from "../../types/EducationSectionProps";
+import type { EducationProps } from "../../types/EducationSection";
 // import data from "../../data/exampleData";
 
 import arrowUp from "../../assets/icons/modal/arrowUp.svg";
@@ -26,7 +26,7 @@ export const EducationSection = ({
   const [editId, setEditId] = useState<string | null>(null);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  
+
   const handleSchool = (e: ChangeEvent<HTMLInputElement>) => {
     setSchool(e.target.value);
   };
@@ -184,13 +184,7 @@ export const EducationSection = ({
                     onChange={handleLocation}
                     placeholderText="Enter Location"
                   />
-                  {error ? (
-                    <div className="text-red-500">
-                      {error}
-                    </div>
-                  ) : (
-                    null
-                  )}
+                  {error ? <div className="text-red-500">{error}</div> : null}
                   <div className="flex justify-end gap-4">
                     <button
                       type="button"

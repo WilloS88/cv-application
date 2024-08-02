@@ -1,4 +1,4 @@
-import type { ContainerProps } from "../types/ContainerProps"
+import type { ContainerProps } from "../types/Container"
 
 export const Container = ({ children }: ContainerProps) => {
   return (

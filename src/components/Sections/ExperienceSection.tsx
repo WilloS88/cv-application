@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from "react";
 import { Disclosure } from "@headlessui/react";
-import { InputBox } from "../InputBox";
+import { InputBox } from "../ui/Inputs/InputBox";
 import { v4 as uuidv4 } from "uuid";
-import type { ExperienceProps } from "../../types/ExperienceSectionProps";
+import type { ExperienceProps } from "../../types/ExperienceSection";
 
 import arrowUp from "../../assets/icons/modal/arrowUp.svg";
 import arrowDown from "../../assets/icons/modal/arrowDown.svg";
@@ -15,7 +15,7 @@ type ExperienceSectionProps = {
 
 export const ExperienceSection = ({
   experiences,
-  setExperiences
+  setExperiences,
 }: ExperienceSectionProps) => {
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
@@ -26,7 +26,7 @@ export const ExperienceSection = ({
   const [editId, setEditId] = useState<string | null>(null);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  
+
   const handleCompany = (e: ChangeEvent<HTMLInputElement>) => {
     setCompany(e.target.value);
   };
@@ -64,8 +64,6 @@ export const ExperienceSection = ({
     return true;
   };
 
- 
-
   const handleSave = () => {
     if (!validateForm()) {
       return;
@@ -82,7 +80,15 @@ export const ExperienceSection = ({
     } else {
       setExperiences([
         ...experiences,
-        { id: uuidv4(), company, position, startDate, endDate, location, description },
+        {
+          id: uuidv4(),
+          company,
+          position,
+          startDate,
+          endDate,
+          location,
+          description,
+        },
       ]);
     }
     clearForm();
@@ -197,13 +203,7 @@ export const ExperienceSection = ({
                     onChange={handleDescription}
                     placeholderText="Enter Description"
                   />
-                  {error ? (
-                    <div className="text-red-500">
-                      {error}
-                    </div>
-                  ) : (
-                    null
-                  )}
+                  {error ? <div className="text-red-500">{error}</div> : null}
                   <div className="flex justify-end gap-4">
                     <button
                       type="button"

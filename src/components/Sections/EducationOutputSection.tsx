@@ -1,4 +1,4 @@
-import type { EducationProps } from "../../types/EducationSectionProps";
+import type { EducationProps } from "../../types/EducationSection";
 
 interface EducationOutputSectionProps {
   educations: EducationProps[];
