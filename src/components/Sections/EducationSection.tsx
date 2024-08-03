@@ -3,7 +3,6 @@ import { Disclosure } from "@headlessui/react";
 import { InputBox } from "../ui/Inputs/InputBox";
 import { v4 as uuidv4 } from "uuid";
 import type { EducationProps } from "../../types/EducationSection";
-// import data from "../../data/exampleData";
 
 import arrowUp from "../../assets/icons/modal/arrowUp.svg";
 import arrowDown from "../../assets/icons/modal/arrowDown.svg";

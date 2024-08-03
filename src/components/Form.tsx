@@ -11,15 +11,14 @@ import { EducationOutputSection } from "./Sections/EducationOutputSection";
 import { ExperienceOutputSection } from "./Sections/ExperienceOutputSection";
 import { CustomizeColor } from "./Sections/CustomizeColor";
 import { CustomizeFont } from "./Sections/CustomizeFont";
-import data from "../data/exampleData";
 import type { EducationProps } from "../types/EducationSection";
 import type { ExperienceProps } from "../types/ExperienceSection";
 
 export const Form = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [adress, setAdress] = useState("");
+  const [fullName, setFullName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phoneNum, setPhoneNum] = useState<string>("");
+  const [adress, setAdress] = useState<string>("");
   const [educations, setEducations] = useState<EducationProps[]>([]);
   const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
   const [visibleDiv, setVisibleDiv] = useState<number | null>(2);
@@ -40,20 +39,6 @@ export const Form = () => {
     setAdress(e.target.value);
   };
 
-  const clearData = () => {
-    setFullName("");
-    setEmail("");
-    setPhoneNum("");
-    setAdress("");
-  };
-
-  const loadData = () => {
-    setFullName(data[0].fullName);
-    setEmail(data[0].email);
-    setPhoneNum(data[0].phoneNumber);
-    setAdress(data[0].address);
-  };
-
   const handleContCustClick = (divNumber: number) => {
     setVisibleDiv(divNumber);
   };
@@ -68,8 +53,22 @@ export const Form = () => {
       </div>
       <div className="flex-col justify-center items-center w-1/3">
         <div className="flex flex-wrap justify-center items-center gap-4 mb-2 rounded-lg bg-white">
-          <ClearButton clearData={clearData} />
-          <LoadExampleButton onClick={loadData} />
+          <ClearButton
+            setFullName={setFullName}
+            setEmail={setEmail}
+            setPhoneNum={setPhoneNum}
+            setAdress={setAdress}
+            setEducations={setEducations}
+            setExperiences={setExperiences}
+          />
+          <LoadExampleButton
+            setFullName={setFullName}
+            setEmail={setEmail}
+            setPhoneNum={setPhoneNum}
+            setAdress={setAdress}
+            setEducations={setEducations}
+            setExperiences={setExperiences}
+          />
         </div>
         {visibleDiv === 1 && (
           <div>
@@ -119,7 +118,7 @@ export const Form = () => {
           </div>
         )}
       </div>
-      <div className="bg-slate-500 w-1/2 h-screen flex-col">
+      <div className="bg-white shadow-lg w-1/2 min-h-3.5 flex-col">
         <HeaderOutputSection
           fullName={fullName}
           email={email}

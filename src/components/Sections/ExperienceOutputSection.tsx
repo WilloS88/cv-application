@@ -19,6 +19,7 @@ export const ExperienceOutputSection = ({
         <div className="w-2/3">
           <h3 className="font-bold">{experience.company}</h3>
           <p>{experience.position}</p>
+          <p className="pt-2">{experience.description}</p>
         </div>
       </div>
     ));

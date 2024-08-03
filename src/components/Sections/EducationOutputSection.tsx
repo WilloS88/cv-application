@@ -19,6 +19,7 @@ export const EducationOutputSection = ({
         <div className="w-2/3">
           <h3 className="font-bold">{education.school}</h3>
           <p>{education.degree}</p>
+          <p className="pt-2">{education.description}</p>
         </div>
       </div>
     ));
