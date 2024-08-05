@@ -1,5 +1,5 @@
-import { ButtonStyled } from "./ButtonStyled";
-import type { LoadExampleButtonProps } from "../../../types/styled/LoadExampleButton";
+import { Button } from "./Button";
+import type { LoadExampleButtonProps } from "../../../types/LoadExampleButton";
 import data from "../../../data/exampleData";
 
 export const LoadExampleButton = ({
@@ -49,7 +49,7 @@ export const LoadExampleButton = ({
 
   return (
     <div>
-      <ButtonStyled content="Load Example" onClick={loadData} />
+      <Button content="Load Example" onClick={loadData} />
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import type { ButtonStyledProps } from "../../../types/styled/ButtonStyled";
+import type { ButtonProps } from "../../../types/styled/Button";
 
-export const ButtonStyled = ({
+export const Button = ({
   icon,
   content,
   onClick,
   textColor = "text-black",
-}: ButtonStyledProps) => {
+}: ButtonProps) => {
   return (
     <button
       className={`flex font-bold ${textColor} rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm bg-blue-600 hover:bg-blue-700 w-full`}
