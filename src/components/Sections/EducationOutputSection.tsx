@@ -1,6 +1,6 @@
 import type { EducationProps } from "../../types/EducationSection";
 
-interface EducationOutputSectionProps {
+type EducationOutputSectionProps = {
   educations: EducationProps[];
 }
 

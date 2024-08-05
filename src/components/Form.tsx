@@ -23,6 +23,7 @@ export const Form = () => {
   const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
   const [visibleDiv, setVisibleDiv] = useState<number | null>(1);
   const [bgColor, setBgColor] = useState<string>("#0891b2");
+  const [fontClass, setFontClass] = useState<string>("font-sans");
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
@@ -48,9 +49,13 @@ export const Form = () => {
     setBgColor(color);
   };
 
+  const handleFontClick = (font: string) => {
+    setFontClass(font);
+  };
+
   const getTextColor = (bgColor: string): string => {
-    const color = bgColor.slice(1);
-    const rgb = parseInt(color, 16);
+    const color = bgColor.slice(1); 
+    const rgb = parseInt(color, 16); 
     const r = (rgb >> 16) & 0xff;
     const g = (rgb >> 8) & 0xff;
     const b = (rgb >> 0) & 0xff;
@@ -61,7 +66,7 @@ export const Form = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex justify-center bg-slate-400 gap-10 p-10 ">
+    <div className="flex justify-center bg-slate-400 gap-10 p-10">
       <div className="flex-col bg-white rounded-lg h-1/5 p-2">
         <ContentButton onClick={handleContCustClick} />
         <CustomizeButton onClick={handleContCustClick} />
@@ -129,11 +134,11 @@ export const Form = () => {
         {visibleDiv === 2 && (
           <div className="flex-col">
             <CustomizeColor onColorChange={handleColorChange} />
-            <CustomizeFont />
+            <CustomizeFont onFontClick={handleFontClick} />
           </div>
         )}
       </div>
-      <div className="bg-white shadow-lg w-1/2 min-h-3.5 flex-col">
+      <div className={`bg-white shadow-lg w-1/2 min-h-3.5 flex-col ${fontClass}`}>
         <HeaderOutputSection
           fullName={fullName}
           email={email}
