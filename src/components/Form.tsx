@@ -21,7 +21,8 @@ export const Form = () => {
   const [adress, setAdress] = useState<string>("");
   const [educations, setEducations] = useState<EducationProps[]>([]);
   const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
-  const [visibleDiv, setVisibleDiv] = useState<number | null>(2);
+  const [visibleDiv, setVisibleDiv] = useState<number | null>(1);
+  const [bgColor, setBgColor] = useState<string>("#0891b2");
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
@@ -41,6 +42,20 @@ export const Form = () => {
 
   const handleContCustClick = (divNumber: number) => {
     setVisibleDiv(divNumber);
+  };
+
+  const handleColorChange = (color: string) => {
+    setBgColor(color);
+  };
+
+  const getTextColor = (bgColor: string): string => {
+    const color = bgColor.slice(1);
+    const rgb = parseInt(color, 16);
+    const r = (rgb >> 16) & 0xff;
+    const g = (rgb >> 8) & 0xff;
+    const b = (rgb >> 0) & 0xff;
+    const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+    return luminance > 186 ? "#000000" : "#ffffff";
   };
 
   useEffect(() => {}, []);
@@ -113,7 +128,7 @@ export const Form = () => {
         )}
         {visibleDiv === 2 && (
           <div className="flex-col">
-            <CustomizeColor />
+            <CustomizeColor onColorChange={handleColorChange} />
             <CustomizeFont />
           </div>
         )}
@@ -124,6 +139,8 @@ export const Form = () => {
           email={email}
           phoneNum={phoneNum}
           address={adress}
+          bgColor={bgColor}
+          textColor={getTextColor(bgColor)}
         />
         <EducationOutputSection educations={educations} />
         <ExperienceOutputSection experiences={experiences} />

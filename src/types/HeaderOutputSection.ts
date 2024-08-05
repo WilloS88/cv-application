@@ -3,4 +3,6 @@ export type HeaderOutputSectionProps = {
   email: string;
   phoneNum: string;
   address: string;
+  bgColor: string;
+  textColor: string;
 };
