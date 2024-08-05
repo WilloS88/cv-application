@@ -15,15 +15,42 @@ import type { EducationProps } from "../types/EducationSection";
 import type { ExperienceProps } from "../types/ExperienceSection";
 
 export const Form = () => {
-  const [fullName, setFullName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phoneNum, setPhoneNum] = useState<string>("");
-  const [adress, setAdress] = useState<string>("");
-  const [educations, setEducations] = useState<EducationProps[]>([]);
-  const [experiences, setExperiences] = useState<ExperienceProps[]>([]);
-  const [visibleDiv, setVisibleDiv] = useState<number | null>(1);
-  const [bgColor, setBgColor] = useState<string>("#0891b2");
-  const [fontClass, setFontClass] = useState<string>("font-sans");
+  const [fullName, setFullName] = useState<string>(() => {
+    const saved = localStorage.getItem("fullName");
+    return saved ? saved : "";
+  });
+  const [email, setEmail] = useState<string>(() => {
+    const saved = localStorage.getItem("email");
+    return saved ? saved : "";
+  });
+  const [phoneNum, setPhoneNum] = useState<string>(() => {
+    const saved = localStorage.getItem("phoneNum");
+    return saved ? saved : "";
+  });
+  const [adress, setAdress] = useState<string>(() => {
+    const saved = localStorage.getItem("adress");
+    return saved ? saved : "";
+  });
+  const [educations, setEducations] = useState<EducationProps[]>(() => {
+    const saved = localStorage.getItem("educations");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [experiences, setExperiences] = useState<ExperienceProps[]>(() => {
+    const saved = localStorage.getItem("experiences");
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [visibleDiv, setVisibleDiv] = useState<number>(() => {
+    const saved = localStorage.getItem("visibleDiv");
+    return saved ? JSON.parse(saved) : 1;
+  });
+  const [bgColor, setBgColor] = useState<string>(() => {
+    const saved = localStorage.getItem("bgColor");
+    return saved ? saved : "#0891b2";
+  });
+  const [fontClass, setFontClass] = useState<string>(() => {
+    const saved = localStorage.getItem("fontClass");
+    return saved ? saved : "font-sans";
+  });
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFullName(e.target.value);
@@ -54,8 +81,8 @@ export const Form = () => {
   };
 
   const getTextColor = (bgColor: string): string => {
-    const color = bgColor.slice(1); 
-    const rgb = parseInt(color, 16); 
+    const color = bgColor.slice(1);
+    const rgb = parseInt(color, 16);
     const r = (rgb >> 16) & 0xff;
     const g = (rgb >> 8) & 0xff;
     const b = (rgb >> 0) & 0xff;
@@ -63,7 +90,27 @@ export const Form = () => {
     return luminance > 186 ? "#000000" : "#ffffff";
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    localStorage.setItem("fullName", fullName);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phoneNum", phoneNum);
+    localStorage.setItem("adress", adress);
+    localStorage.setItem("educations", JSON.stringify(educations));
+    localStorage.setItem("experiences", JSON.stringify(experiences));
+    localStorage.setItem("visibleDiv", JSON.stringify(visibleDiv));
+    localStorage.setItem("bgColor", bgColor);
+    localStorage.setItem("fontClass", fontClass);
+  }, [
+    fullName,
+    email,
+    phoneNum,
+    adress,
+    educations,
+    experiences,
+    visibleDiv,
+    bgColor,
+    fontClass,
+  ]);
 
   return (
     <div className="flex justify-center bg-slate-400 gap-10 p-10">
@@ -138,7 +185,9 @@ export const Form = () => {
           </div>
         )}
       </div>
-      <div className={`bg-white shadow-lg w-1/2 min-h-3.5 flex-col ${fontClass}`}>
+      <div
+        className={`bg-white shadow-lg w-1/2 min-h-3.5 flex-col ${fontClass}`}
+      >
         <HeaderOutputSection
           fullName={fullName}
           email={email}
