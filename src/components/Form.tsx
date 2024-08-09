@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ContentButton } from "./ui/Buttons/ContentButton";
 import { CustomizeButton } from "./ui/Buttons/CustomizeButton";
-import { InputBox } from "./ui/Inputs/InputBox";
+import { Input } from "./ui/Input";
 import { EducationSection } from "./Sections/EducationSection";
 import { ExperienceSection } from "./Sections/ExperienceSection";
 import { ClearButton } from "./ui/Buttons/ClearButton";
@@ -143,25 +143,25 @@ export const Form = () => {
               <div>
                 <h1 className="text-xl font-bold mb-2">Personal Details</h1>
               </div>
-              <InputBox
+              <Input
                 heading="Full Name"
                 value={fullName}
                 onChange={handleName}
                 placeholderText="First and last name"
               />
-              <InputBox
+              <Input
                 heading="Email"
                 value={email}
                 onChange={handleEmail}
                 placeholderText="Enter email"
               />
-              <InputBox
+              <Input
                 heading="Phone number"
                 value={phoneNum}
                 onChange={handlePhoneNum}
                 placeholderText="Enter phone number"
               />
-              <InputBox
+              <Input
                 heading="Adress"
                 value={adress}
                 onChange={handleAdress}

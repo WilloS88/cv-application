@@ -1,11 +1,11 @@
-import type { InputBoxProps } from "../../../types/InputBox";
+import type { InputProps } from "../../types/styled/Input";
 
-export const InputBox = ({
+export const Input = ({
   heading,
   value,
   onChange,
   placeholderText,
-}: InputBoxProps) => {
+}: InputProps) => {
   return (
     <div className="flex-col ">
       <h2>{heading}</h2>

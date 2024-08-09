@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { Disclosure } from "@headlessui/react";
-import { InputBox } from "../ui/Inputs/InputBox";
+import { Input } from "../ui/Input";
 import { v4 as uuidv4 } from "uuid";
 import type { ExperienceProps } from "../../types/ExperienceSection";
 
@@ -159,20 +159,20 @@ export const ExperienceSection = ({
             <Disclosure.Panel className="my-2 p-4 bg-white rounded-lg shadow">
               {isFormVisible ? (
                 <form className="space-y-2 mb-4">
-                  <InputBox
+                  <Input
                     heading="Company"
                     value={company}
                     onChange={handleCompany}
                     placeholderText="Enter Company Name"
                   />
-                  <InputBox
+                  <Input
                     heading="Position"
                     value={position}
                     onChange={handlePosition}
                     placeholderText="Enter Position"
                   />
                   <div className="flex gap-4">
-                    <InputBox
+                    <Input
                       heading="Start Date"
                       value={startDate}
                       onChange={handleStartDate}
@@ -181,7 +181,7 @@ export const ExperienceSection = ({
                       min="1900"
                       max="2100"
                     />
-                    <InputBox
+                    <Input
                       heading="End Date"
                       value={endDate}
                       onChange={handleEndDate}
@@ -191,13 +191,13 @@ export const ExperienceSection = ({
                       max="2100"
                     />
                   </div>
-                  <InputBox
+                  <Input
                     heading="Location"
                     value={location}
                     onChange={handleLocation}
                     placeholderText="Enter Location"
                   />
-                  <InputBox
+                  <Input
                     heading="Description (optional)"
                     value={description}
                     onChange={handleDescription}
